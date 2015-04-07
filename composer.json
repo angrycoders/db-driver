@@ -7,5 +7,7 @@
             "email": "keysindicet@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "luracast/restler": "*"
+    }
 }
