@@ -1,0 +1,11 @@
+{
+    "name": "angrycoders/jkuatapp",
+    "description": "This is a an application that is developed to make life easy for all university users",
+    "authors": [
+        {
+            "name": "Magani Felix",
+            "email": "keysindicet@gmail.com"
+        }
+    ],
+    "require": {}
+}
