@@ -1,13 +1,26 @@
 {
-    "name": "angrycoders/jkuatapp",
-    "description": "This is a an application that is developed to make life easy for all university users",
+    "name": "jkuatapp/dbapi",
+    "description": "JKUAT App database interface",
+    "license":	"MIT",
     "authors": [
         {
             "name": "Magani Felix",
-            "email": "keysindicet@gmail.com"
+            "email": "keysindicet@gmail.com",
+            "role":	"Developer"
         }
     ],
-    "require": {
-        "luracast/restler": "*"
+    "support":	{
+        "email":	"keysindicet@gmail.com"
+    },
+    "require":	{
+        "php"	:	">=5.4.0"
+    },
+    "require-dev":	{
+        "phpunit/phpunit":	"~4.6"
+    },
+    "autoload":	{
+        "psr-4":	{
+            "JkuatApp\\DbApi\\":	"src/"
+        }
     }
 }
