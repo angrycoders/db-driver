@@ -20,7 +20,7 @@ $ phpunit
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see CONTRIBUTING.md for details.
 
 ## Security
 
@@ -33,4 +33,4 @@ Magani Felix
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see LICENSE.md for more information.
