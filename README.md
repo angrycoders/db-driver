@@ -6,7 +6,9 @@ JKUAT App database interface
 
 Via Composer
 
-Coming soon...
+``` bash
+$ composer require jkuatapp/dbapi
+```
 
 ## Usage
 
