@@ -31,4 +31,9 @@ abstract class Table
     {
         $this->$tableName = $tableName;
     }
-}    
+
+    /**
+     * create table in db
+     */
+    public abstract function create();
+}
