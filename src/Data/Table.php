@@ -18,6 +18,11 @@ abstract class Table
 {
 
     /**
+     * @var \PDO connection to the db
+     */
+    protected $con;
+
+    /**
      * The name of the table in the db
      * @var string
      */
@@ -27,8 +32,14 @@ abstract class Table
      * The Constructor
      * @param string $tableName The name of the table in the database
      */
-    public function __construct($tableName)
+    public function __construct($tableName, $con)
     {
         $this->$tableName = $tableName;
+        $this->con = $con;
     }
-}    
+
+    /**
+     * create table in db
+     */
+    public abstract function create();
+}
