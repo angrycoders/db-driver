@@ -7,6 +7,7 @@
  */
 
 namespace JkuatApp\DbApi;
+use JkuatApp\DbApi\Data\Table\Account;
 
 /**
  * Main Datbase class
@@ -14,7 +15,8 @@ namespace JkuatApp\DbApi;
  * Class DbJkuatApp
  * @package JkuatApp\DbApi
  */
-class DbJkuatApp {
+class DbJkuatApp
+{
 
     /**
      * @var \PDO connection to the db
@@ -22,12 +24,16 @@ class DbJkuatApp {
     private $con;
 
     /**
-     * Database constants
+     * Database details
      */
     private $host;
     private $username;
     private $password;
     private $database;
+
+    /** Database table classes **/
+    /**@var Account */
+    public $account;
 
     /**
      * Constructor
@@ -35,6 +41,7 @@ class DbJkuatApp {
      * @param string $username name of user
      * @param string $password password for the user
      * @param string $database name of database
+     * @throws \PDOException when the connection to db fails
      */
     public function __construct($host, $username, $password, $database)
     {
@@ -43,18 +50,43 @@ class DbJkuatApp {
         $this->$password = $password;
         $this->database = $database;
         $this->connectToDb();
+        $this->createDb();
+        $this->initTables();
+        $this->createTables();
     }
 
     /**
      * Connect to the db
+     * @throws \PDOException when the connection to db fails
      */
     private function connectToDb()
     {
-        try {
-            $this->con = new \PDO("mysql:host=$this->host;dbname=$this->database", $this->username, $this->password);
-        }
-        catch(\PDOException $e){
-            echo $e->getMessage();
-        }
+        $this->con = new \PDO("mysql:host=$this->host", $this->username, $this->password);
+    }
+
+    /**
+     * Creates a new db using the name provided if it does'nt exist
+     * @throws \PDOException when the query execution fails
+     */
+    private function createDb()
+    {
+        $query = "CREATE DATABASE IF NOT EXISTS " .$this->database;
+        $this->con->query($query);
+    }
+
+    /**
+     * initializes all table objects
+     */
+    private function initTables()
+    {
+        $this->account = new Account($this->con);
+    }
+
+    /**
+     * Creates all tables in the db
+     */
+    private function createTables()
+    {
+        $this->account->create();
     }
 } 

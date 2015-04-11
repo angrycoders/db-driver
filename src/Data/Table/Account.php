@@ -18,6 +18,7 @@ use JkuatApp\DbApi\Data\Table;
 class Account extends Table
 {
 
+
     const TABLE_NAME = "account";
 
     /**
@@ -29,22 +30,26 @@ class Account extends Table
 
     /**
      * Constructor
-     * @param string $tableName
+     * @param \PDO $con a connection to the database
+     * @internal param string $tableName
      */
-    public function __construct()
+    public function __construct($con)
     {
-        parent::__construct(self::TABLE_NAME);
+        parent::__construct(self::TABLE_NAME, $con);
     }
 
     /**
      * create schema in the db
+     * @throws \PDOException when the query execution fails
      */
     public function create()
     {
-        $sql = "CREATE TABLE IF NOT EXISTS " .self::TABLE_NAME."( "
+        $query = "CREATE TABLE IF NOT EXISTS " .self::TABLE_NAME."( "
                     .self::COL_ACCOUNT_ID." INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,"
                     .self::COL_USERNAME. " VARCHAR(100) NOT NULL,"
                     .self::COL_PASSWORD. " VARCHAR(255) NOT NULL)
-                    ENGINE=InnoDB";
+                    ENGINE=MyISAM DEFAULT CHARSET=latin1";
+
+        $this->con->query($query);
     }
 }

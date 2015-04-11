@@ -2,19 +2,11 @@
 
 All Notable changes to dbapi will be documented in this file
 
-## NEXT - YYYY-MM-DD
+Date: 2015-4-11
 
 ### Added
-- Nothing
+- Database creation 
+- Table creation for
+    - Accounts
 
-### Deprecated
-- Nothing
 
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
