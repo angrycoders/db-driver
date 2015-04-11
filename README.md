@@ -6,8 +6,26 @@ JKUAT App database interface
 
 Via Composer
 
-``` bash
+```
 $ composer require jkuatapp/dbapi
+```
+
+Get master branch update (has the oldest code)
+
+```
+require "jkuatapp/dbapi": "dev-master"
+```
+
+Get develop branch update (has the latest code)
+
+```
+require "jkuatapp/dbapi": "dev-develop"
+```
+
+Get for a specific version
+
+```
+require "jkuatapp/dbapi": "1.0.0"
 ```
 
 ## Usage
