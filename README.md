@@ -7,13 +7,13 @@ JKUAT App database interface
 Via Composer
 
 ```
-$ composer require jkuatapp/dbapi
+$ composer require angrycoders/db
 ```
 
 Get master branch update (has the oldest code)
 
 ```
-require "jkuatapp/dbapi": "dev-master"
+require "angr/dbapi": "dev-master"
 ```
 
 Get develop branch update (has the latest code)
@@ -33,7 +33,7 @@ require "jkuatapp/dbapi": "1.0.0"
 ```php
 require_once "../vendor/autoload.php";
 
-use JkuatApp\DbApi\DbJkuatApp;
+use AngryCoders\Db\Db;
 
 $host = "localhost";
 $username = "felix";
