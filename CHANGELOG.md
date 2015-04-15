@@ -2,11 +2,9 @@
 
 All Notable changes to dbapi will be documented in this file
 
-Date: 2015-4-11
+Date: 0000-0-00
 
 ### Added
-- Database creation 
-- Table creation for
-    - Accounts
+Nothing
 
 

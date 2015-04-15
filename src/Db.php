@@ -6,16 +6,16 @@
  * Time: 5:17 PM
  */
 
-namespace JkuatApp\DbApi;
-use JkuatApp\DbApi\Data\Table\Account;
+namespace AngryCoders\Db;
+use \PDO;
 
 /**
- * Main Datbase class
+ * Main Database class
  * Controls access to the database class tables
- * Class DbJkuatApp
- * @package JkuatApp\DbApi
+ * Class Db
+ * @package AngryCoders\Db
  */
-class DbJkuatApp
+class Db
 {
 
     /**
@@ -31,10 +31,6 @@ class DbJkuatApp
     private $password;
     private $database;
 
-    /** Database table classes **/
-    /**@var Account */
-    public $account;
-
     /**
      * Constructor
      * @param string $host name of host
@@ -47,7 +43,7 @@ class DbJkuatApp
     {
         $this->host = $host;
         $this->$username = $username;
-        $this->$password = $password;
+
         $this->database = $database;
         $this->connectToDb();
         $this->createDb();
@@ -61,32 +57,8 @@ class DbJkuatApp
      */
     private function connectToDb()
     {
-        $this->con = new \PDO("mysql:host=$this->host", $this->username, $this->password);
+        $this->con = new PDO("mysql:host=$this->host", $this->username, $this->password);
+        $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    /**
-     * Creates a new db using the name provided if it does'nt exist
-     * @throws \PDOException when the query execution fails
-     */
-    private function createDb()
-    {
-        $query = "CREATE DATABASE IF NOT EXISTS " .$this->database;
-        $this->con->query($query);
-    }
-
-    /**
-     * initializes all table objects
-     */
-    private function initTables()
-    {
-        $this->account = new Account($this->con);
-    }
-
-    /**
-     * Creates all tables in the db
-     */
-    private function createTables()
-    {
-        $this->account->create();
-    }
 } 
