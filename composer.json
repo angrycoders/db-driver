@@ -1,5 +1,5 @@
 {
-    "name": "jkuatapp/dbapi",
+    "name": "angrycoders/db",
     "description": "JKUAT App database interface",
     "license":	"MIT",
     "authors": [
@@ -20,7 +20,7 @@
     },
     "autoload":	{
         "psr-4":	{
-            "JkuatApp\\DbApi\\":	"src/"
+            "AngryCoders\\Db\\":	"src/"
         }
     }
 }
