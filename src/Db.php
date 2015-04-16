@@ -7,7 +7,9 @@
  */
 
 namespace AngryCoders\Db;
-use \PDO;
+
+use AngryCoders\Db\Database\iDatabase;
+use AngryCoders\Db\Database\SQL\SQLDatabase;
 
 /**
  * Main Database class
@@ -15,9 +17,51 @@ use \PDO;
  * Class Db
  * @package AngryCoders\Db
  */
-class Db
+class Db implements iDatabase
 {
+    //Database constants
+    const PRIMARY_KEY = "PRIMARY KEY";
+    const AUTO_INCREMENT = "AUTO_INCREMENT";
+    const NOT_NULL = "NOT NULL";
+
+    const TEXT = "TEXT";
+    const INTEGER = "INTEGER";
+    const VARCHAR = "VARCHAR";
+    const DATETIME = "DATETIME";
+    const FLOAT = "FLOAT";
+    const DOUBLE = "DOUBLE";
+
+    /**
+     * @var iDatabase current db
+     */
+    private $db;
+
     public function __construct()
     {
+        $this->db = new SQLDatabase();
+        $this->connectToDb();
     }
-} 
+
+    /**
+     * Connects to the database
+     */
+    public function connectToDb()
+    {
+        $this->db->connectToDb();
+    }
+
+    /**
+     * Creates a table with the specified name and attributes
+     * @param string $tableName
+     * @param array $attributes
+     * @throw DbException
+     */
+    public function createTable($tableName, $attributes)
+    {
+        try {
+            $this->db->createTable($tableName, $attributes);
+        } catch (\Exception $e) {
+            throw new DbException(DbException::CREATE_TABLE_SYNTAX);
+        }
+    }
+}

@@ -6,7 +6,7 @@
  * Time: 6:53 PM
  */
 
-namespace AngryCoders\Db;
+namespace AngryCoders\Db\Database;
 
 /**
  * Interface iDatabase
@@ -23,7 +23,7 @@ interface iDatabase {
     /**
      * Creates a table with the specified name and attributes
      * @param string $tableName
-     * @param array $attributes
+     * @param array $fields
      */
-    public function createTable($tableName, $attributes);
+    public function createTable($tableName, $fields);
 } 

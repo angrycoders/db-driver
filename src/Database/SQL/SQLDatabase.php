@@ -6,7 +6,9 @@
  * Time: 6:59 PM
  */
 
-namespace AngryCoders\Db;
+namespace AngryCoders\Db\Database\SQL;
+use AngryCoders\Db\Database\iDatabase;
+use PDO;
 
 /**
  * Class SQLDatabase
@@ -36,16 +38,19 @@ class SQLDatabase implements iDatabase{
     {
         $this->con = new PDO("mysql:host=$this->host", $this->username, $this->password);
         $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->con->query("CREATE TABLE IF NOT EXISTS". $this->dbName);
+        $this->con->query("CREATE DATABASE IF NOT EXISTS ". $this->dbName);
+        $this->con->query("USE ".$this->dbName);
     }
 
     /**
      * Creates a table with the specified name and attributes
      * @param string $tableName
-     * @param array $attributes
+     * @param array $fields
+     * @throws \PDOException
      */
-    public function createTable($tableName, $attributes)
+    public function createTable($tableName, $fields)
     {
-        // TODO: Implement createTable() method.
+        $query = SQLEncoder::encodeCreateTable($tableName, $fields);
+        $this->con->query($query);
     }
 }
