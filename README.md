@@ -25,8 +25,7 @@ require "angrycoders/db": "1.0.0"
 ## Usage
 Make sure your server is running first.
 
-```
-!php
+```php
 
 require_once '../vendor/autoload.php';
 
@@ -56,8 +55,7 @@ $db = new Db();
 **Note** - For each field the field Type and field Size must be the first attributes to be specified respectively. The other fields can
 follow in any order. If a field does not have a size just specify zero (0).
 
-```
-!php
+```php
 
 try {
 
