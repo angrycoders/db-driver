@@ -10,16 +10,10 @@ Via Composer
 $ composer require angrycoders/db
 ```
 
-Get master branch update (has the oldest code)
+Get master branch update
 
 ```
 require "angrycoders/db": "dev-master"
-```
-
-Get develop branch update (has the latest code)
-
-```
-require "angrycoders/db": "dev-develop"
 ```
 
 Get for a specific version
