@@ -26,4 +26,10 @@ interface iDatabase {
      * @param array $fields
      */
     public function createTable($tableName, $fields);
+
+    /**
+     * Delete a table from db
+     * @param string $tableName the name of the table
+     */
+    public function deleteTable($tableName);
 } 

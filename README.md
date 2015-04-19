@@ -71,6 +71,13 @@ try {
 
 ```
 
+###Deleting a table
+
+```php
+
+$db->deleteTable("tableName");
+
+```
 
 ## Testing
 

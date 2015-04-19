@@ -53,4 +53,14 @@ class SQLDatabase implements iDatabase{
         $query = SQLEncoder::encodeCreateTable($tableName, $fields);
         $this->con->query($query);
     }
+
+    /**
+     * Delete a table from db
+     * @param string $tableName the name of the table
+     */
+    public function deleteTable($tableName)
+    {
+        $query = "DROP TABLE IF EXISTS " . $tableName;
+        $this->con->query($query);
+    }
 }

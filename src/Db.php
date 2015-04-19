@@ -54,14 +54,28 @@ class Db implements iDatabase
      * Creates a table with the specified name and attributes
      * @param string $tableName
      * @param array $attributes
-     * @throw DbException
+     * @throws DbException
      */
     public function createTable($tableName, $attributes)
     {
         try {
             $this->db->createTable($tableName, $attributes);
         } catch (\Exception $e) {
-            throw new DbException(DbException::CREATE_TABLE_SYNTAX);
+            throw new DbException($e->getMessage());
+        }
+    }
+
+    /**
+     * Delete a table from db
+     * @param string $tableName the name of the table
+     * @throws DbException
+     */
+    public function deleteTable($tableName)
+    {
+        try {
+            $this->db->deleteTable($tableName);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
         }
     }
 }

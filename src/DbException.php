@@ -16,17 +16,8 @@ use Exception;
  */
 class DbException extends Exception
 {
-    const CREATE_TABLE_SYNTAX = 0;
-
-    public function __construct($code, Exception $exception = null)
+    public function __construct($message, $code = 0, Exception $exception = null)
     {
-        switch($this->code)
-        {
-            case self::CREATE_TABLE_SYNTAX:
-                $message = "There was an error in your create table params";
-                break;
-        }
         parent::__construct($message, $code, $exception);
     }
-
 } 
