@@ -32,4 +32,11 @@ interface iDatabase {
      * @param string $tableName the name of the table
      */
     public function deleteTable($tableName);
+
+    /**
+     * Inserts a new record to the db
+     * @param string $tableName
+     * @param array $newRecord     *
+     */
+    public function insertRecord($tableName, $newRecord);
 } 

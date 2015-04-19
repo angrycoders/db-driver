@@ -7,6 +7,7 @@
  */
 
 namespace AngryCoders\Db\Database\SQL;
+
 use AngryCoders\Db\Database\iDatabase;
 use PDO;
 
@@ -15,7 +16,8 @@ use PDO;
  * SQL Database implementation
  * @package AngryCoders\Db
  */
-class SQLDatabase implements iDatabase{
+class SQLDatabase implements iDatabase
+{
 
     /**
      * @var \PDO connection to the db
@@ -38,8 +40,8 @@ class SQLDatabase implements iDatabase{
     {
         $this->con = new PDO("mysql:host=$this->host", $this->username, $this->password);
         $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->con->query("CREATE DATABASE IF NOT EXISTS ". $this->dbName);
-        $this->con->query("USE ".$this->dbName);
+        $this->con->query("CREATE DATABASE IF NOT EXISTS " . $this->dbName);
+        $this->con->query("USE " . $this->dbName);
     }
 
     /**
@@ -61,6 +63,17 @@ class SQLDatabase implements iDatabase{
     public function deleteTable($tableName)
     {
         $query = "DROP TABLE IF EXISTS " . $tableName;
+        $this->con->query($query);
+    }
+
+    /**
+     * Inserts a new record to the db
+     * @param string $tableName
+     * @param array $newRecord *
+     */
+    public function insertRecord($tableName, $newRecord)
+    {
+        $query = SQLEncoder::encodeInsertRecord($tableName, $newRecord);
         $this->con->query($query);
     }
 }

@@ -79,6 +79,14 @@ $db->deleteTable("tableName");
 
 ```
 
+###Inserting a record
+
+```php
+
+$db -> insertRecord("student", array(NULL, 'cs281-3722/2013', '54', '23', 'Magani Felix'));
+
+```
+
 ## Testing
 
 ``` bash

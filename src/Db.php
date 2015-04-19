@@ -78,4 +78,19 @@ class Db implements iDatabase
             throw new DbException($e->getMessage());
         }
     }
+
+    /**
+     * Inserts a new record to the db
+     * @param string $tableName
+     * @param array $newRecord
+     * @throws DbException
+     */
+    public function insertRecord($tableName, $newRecord)
+    {
+        try {
+            $this->db->insertRecord($tableName, $newRecord);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
 }

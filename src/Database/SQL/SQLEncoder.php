@@ -44,4 +44,23 @@ class SQLEncoder
             $query .= ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
             return $query;
     }
+
+
+    /**
+     * Creates a insert record SQL statement
+     * @param $tableName
+     * @param $newRecord
+     */
+    public static function encodeInsertRecord($tableName, $newRecord)
+    {
+        $query = "INSERT INTO $tableName VALUES (";
+        $size = sizeof($newRecord);
+        foreach($newRecord as $index => $record){
+            $query .= " '$record'";
+            if($index != ($size - 1))
+                $query .=" ,";
+        }
+        $query .= " );";
+        return $query;
+    }
 } 
