@@ -76,4 +76,16 @@ class SQLDatabase implements iDatabase
         $query = SQLEncoder::encodeInsertRecord($tableName, $newRecord);
         $this->con->query($query);
     }
+
+    /**
+     * Deletes the specified record from the table
+     * @param string $tableName name of table
+     * @param string $value the value to be matched
+     * @param string $field the field to check value matched
+     */
+    public function deleteRecord($tableName, $value, $field)
+    {
+        $query = SQLEncoder::encodeDeleteRecord($tableName, $value, $field);
+        $this->con->query($query);
+    }
 }

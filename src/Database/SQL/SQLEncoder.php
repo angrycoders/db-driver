@@ -50,6 +50,7 @@ class SQLEncoder
      * Creates a insert record SQL statement
      * @param $tableName
      * @param $newRecord
+     * @return string executable sql statement
      */
     public static function encodeInsertRecord($tableName, $newRecord)
     {
@@ -61,6 +62,19 @@ class SQLEncoder
                 $query .=" ,";
         }
         $query .= " );";
+        return $query;
+    }
+
+    /**
+     * Creates a delete record SQL statement
+     * @param $tableName
+     * @param $value
+     * @param $field
+     * @return string executable SQL statement
+     */
+    public static function encodeDeleteRecord($tableName, $value, $field)
+    {
+        $query = "DELETE FROM $tableName WHERE $field = '$value';";
         return $query;
     }
 } 

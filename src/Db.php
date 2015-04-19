@@ -93,4 +93,20 @@ class Db implements iDatabase
             throw new DbException($e->getMessage());
         }
     }
+
+    /**
+     * Deletes the specified record from the table
+     * @param string $tableName name of table
+     * @param string $value the value to be matched
+     * @param string $field the field to check value matched
+     * @throws DbException
+     */
+    public function deleteRecord($tableName, $value, $field)
+    {
+        try {
+            $this->db->deleteRecord($tableName, $value, $field);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
 }

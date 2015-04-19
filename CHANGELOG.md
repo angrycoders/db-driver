@@ -7,6 +7,7 @@ Date: 2015-4-19
 ### Added
 - Table Deletion
 - Inserting records
+- Record Deletion
 
 Date: 2015-4-16
 

@@ -87,6 +87,16 @@ $db -> insertRecord("student", array(NULL, 'cs281-3722/2013', '54', '23', 'Magan
 
 ```
 
+###Deleting a record
+
+Deletes a Record from **student** table where **regNo** = **cs281-3722/2013**
+
+```php
+
+$db -> deleteRecord("student", 'cs281-3722/2013', "regNo");
+
+```
+
 ## Testing
 
 ``` bash

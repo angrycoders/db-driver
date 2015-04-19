@@ -39,4 +39,12 @@ interface iDatabase {
      * @param array $newRecord     *
      */
     public function insertRecord($tableName, $newRecord);
+
+    /**
+     * Deletes the specified record from the table
+     * @param string $tableName name of table
+     * @param string $value the value to be matched
+     * @param string $field the field to check value matched
+     */
+    public function deleteRecord($tableName, $value, $field);
 } 
