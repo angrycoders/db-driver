@@ -24,25 +24,25 @@ class SQLEncoder
      */
     public static function encodeCreateTable($tableName, $fields)
     {
-            $query = "CREATE TABLE IF NOT EXISTS $tableName (";
-            $keys = array_keys($fields);
-            $size = sizeof($keys);
+        $query = "CREATE TABLE IF NOT EXISTS $tableName (";
+        $keys = array_keys($fields);
+        $size = sizeof($keys);
 
-            foreach ($keys as $index => $field) {
-                $query .= " $field";
-                $attribs = $fields[$field];
-                foreach($attribs as $i => $attrib) {
-                    if($i == 1)
-                        $query .= ($attrib == "0"? "" : "($attrib)");
-                    else
-                        $query .= " $attrib";
-                }
-                if($index != ($size - 1))
-                    $query .=" ,";
+        foreach ($keys as $index => $field) {
+            $query .= " $field";
+            $attribs = $fields[$field];
+            foreach ($attribs as $i => $attrib) {
+                if ($i == 1)
+                    $query .= ($attrib == "0" ? "" : "($attrib)");
+                else
+                    $query .= " $attrib";
             }
+            if ($index != ($size - 1))
+                $query .= " ,";
+        }
 
-            $query .= ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-            return $query;
+        $query .= ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        return $query;
     }
 
 
@@ -56,10 +56,10 @@ class SQLEncoder
     {
         $query = "INSERT INTO $tableName VALUES (";
         $size = sizeof($newRecord);
-        foreach($newRecord as $index => $record){
+        foreach ($newRecord as $index => $record) {
             $query .= " '$record'";
-            if($index != ($size - 1))
-                $query .=" ,";
+            if ($index != ($size - 1))
+                $query .= " ,";
         }
         $query .= " );";
         return $query;
@@ -75,6 +75,33 @@ class SQLEncoder
     public static function encodeDeleteRecord($tableName, $value, $field)
     {
         $query = "DELETE FROM $tableName WHERE $field = '$value';";
+        return $query;
+    }
+
+    /**
+     * Encodes get record statement
+     * @param string $tableName
+     * @param string $field field to match
+     * @param string $value value to match with field
+     * @param array $fields columns to be returned
+     * @return string executable SQL statement
+     */
+    public static function encodeGetRecord($tableName, $field, $value, $fields = array())
+    {
+        $select = "";
+        $size = sizeof($fields);
+        //Select fields to be returned
+        if (sizeof($fields) > 0) {
+            foreach ($fields as $i => $column) {
+                $select .= " $column";
+                if ($i != ($size - 1))
+                    $select .= ",";
+            }
+        } else {
+            $select = "*";
+        }
+
+        $query = "SELECT $select FROM $tableName WHERE $field = '$value'";
         return $query;
     }
 } 

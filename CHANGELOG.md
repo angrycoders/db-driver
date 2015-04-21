@@ -2,6 +2,11 @@
 
 All Notable changes to dbapi will be documented in this file
 
+Date: 2015-4-21
+
+### Added
+- Getting records
+
 Date: 2015-4-19
 
 ### Added

@@ -109,4 +109,22 @@ class Db implements iDatabase
             throw new DbException($e->getMessage());
         }
     }
+
+    /**
+     * Return record(s) from specified table
+     * @param string $tableName
+     * @param string $field field to match
+     * @param string $value value to match with field
+     * @param array $fields columns to be returned
+     * @return string executable SQL statement
+     * @throws DbException
+     */
+    public function getRecord($tableName, $field, $value, $fields = array())
+    {
+        try {
+            return $this->db->getRecord($tableName, $field, $value, $fields);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
 }

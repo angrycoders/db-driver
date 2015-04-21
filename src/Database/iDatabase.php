@@ -47,4 +47,15 @@ interface iDatabase {
      * @param string $field the field to check value matched
      */
     public function deleteRecord($tableName, $value, $field);
+
+    /**
+     * Return record(s) from specified table
+     * @param string $tableName
+     * @param string $field field to match
+     * @param string $value value to match with field
+     * @param array $fields columns to be returned
+     * @return string executable SQL statement
+     */
+    public function getRecord($tableName, $field, $value, $fields = array());
+
 } 

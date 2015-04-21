@@ -88,4 +88,18 @@ class SQLDatabase implements iDatabase
         $query = SQLEncoder::encodeDeleteRecord($tableName, $value, $field);
         $this->con->query($query);
     }
+
+    /**
+     * Return record(s) from specified table
+     * @param string $tableName
+     * @param string $field field to match
+     * @param string $value value to match with field
+     * @param array $fields columns to be returned
+     * @return string executable SQL statement
+     */
+    public function getRecord($tableName, $field, $value, $fields = array())
+    {
+        $query = SQLEncoder::encodeGetRecord($tableName, $field, $value, $fields);
+        return $this->con->query($query);
+    }
 }
