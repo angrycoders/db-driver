@@ -127,4 +127,22 @@ class Db implements iDatabase
             throw new DbException($e->getMessage());
         }
     }
+
+    /**
+     * updates record(s) in db
+     * @param string $tableName the name of table in db
+     * @param array $fields the fields to be updated
+     * @param array $values the values to update the fields
+     * @param string $field the field to check
+     * @param string $value the value of the field to check
+     * @throws DbException
+     */
+    public function updateRecord($tableName, $fields, $values, $field, $value)
+    {
+        try {
+            return $this->db->updateRecord($tableName, $fields, $values, $field, $value);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
 }

@@ -58,4 +58,15 @@ interface iDatabase {
      */
     public function getRecord($tableName, $field, $value, $fields = array());
 
+    /**
+     * updates record(s) in db
+     * @param string $tableName the name of table in db
+     * @param array $fields the fields to be updated
+     * @param array $values the values to update the fields
+     * @param string $field the field to check
+     * @param string $value the value of the field to check
+     */
+    public function updateRecord($tableName, $fields, $values, $field, $value);
+
+
 } 

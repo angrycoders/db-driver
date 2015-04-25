@@ -102,4 +102,18 @@ class SQLDatabase implements iDatabase
         $query = SQLEncoder::encodeGetRecord($tableName, $field, $value, $fields);
         return $this->con->query($query);
     }
+
+    /**
+     * updates record(s) in db
+     * @param string $tableName the name of table in db
+     * @param array $fields the fields to be updated
+     * @param array $values the values to update the fields
+     * @param string $field the field to check
+     * @param string $value the value of the field to check
+     */
+    public function updateRecord($tableName, $fields, $values, $field, $value)
+    {
+        $query = SQLEncoder::encodeUpdateRecord($tableName, $fields, $values, $field, $value);
+        $this->con->query($query);
+    }
 }

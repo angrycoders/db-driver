@@ -104,4 +104,26 @@ class SQLEncoder
         $query = "SELECT $select FROM $tableName WHERE $field = '$value'";
         return $query;
     }
+
+    /**
+     * Encodes the params to an SQL statement
+     * @param string $tableName the name of table in db
+     * @param array $fields the fields to be updated
+     * @param array $values the values to update the fields
+     * @param string $field the field to check
+     * @param string $value the value of the field to check
+     * @return string executable SQL statement
+     */
+    public static function encodeUpdateRecord($tableName, $fields, $values, $field, $value)
+    {
+        $query = "UPDATE $tableName SET";
+        $size = sizeof($fields);
+        foreach ($fields as $i => $column) {
+            $query .= " $column = '$values[$i]'";
+            if ($i != ($size - 1))
+                $query .= ",";
+        }
+        $query .= " WHERE $field = '$value'";
+        return $query;
+    }
 } 
