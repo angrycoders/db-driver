@@ -101,7 +101,7 @@ class SQLEncoder
             $select = "*";
         }
 
-        $query = "SELECT $select FROM $tableName WHERE $field = '$value'";
+        $query = "SELECT $select FROM $tableName WHERE $field = '$value';";
         return $query;
     }
 
@@ -123,7 +123,7 @@ class SQLEncoder
             if ($i != ($size - 1))
                 $query .= ",";
         }
-        $query .= " WHERE $field = '$value'";
+        $query .= " WHERE $field = '$value';";
         return $query;
     }
 } 
