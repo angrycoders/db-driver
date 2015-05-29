@@ -123,6 +123,33 @@ foreach($result as $row)
 
 ```
 
+###Getting All record(s)
+
+```php
+
+//selecting all columns from a specific table
+$result = $db->getAllRecords("student");
+
+foreach($result as $row)
+{
+    echo $row['studentID'] . "<br>";
+    echo $row['regNo'] . "<br>";
+    echo $row['courseID'] . "<br>";
+    echo $row['name'] . "<br>";
+    echo $row['accountID'] . "<br><br>";
+}
+
+//selecting accountID and name fields only to be returned
+$result = $db->getAllRecords("student", array('name','accountID'));
+
+//selecting the first 5 records to be returned
+$result = $db->getAllRecords("student", null, 5);
+
+//selecting the next 10 records to be returned from the 5th record
+$result = $db->getAllRecords("student", null, 10, 4);
+
+```
+
 ###Updating record(s)
 
 ```php
