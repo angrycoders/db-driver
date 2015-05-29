@@ -9,6 +9,7 @@
 namespace AngryCoders\Db\Database\SQL;
 
 use AngryCoders\Db\Database\iDatabase;
+use AngryCoders\Db\Database\the;
 use PDO;
 
 /**
@@ -115,5 +116,19 @@ class SQLDatabase implements iDatabase
     {
         $query = SQLEncoder::encodeUpdateRecord($tableName, $fields, $values, $field, $value);
         $this->con->query($query);
+    }
+
+    /**
+     * Get all record from db
+     * @param $tableName the name of table in db
+     * @param array $fields the field to be returned. Returns all fields if not specified
+     * @param int $limit the number of records to return. Returns all record if not returned
+     * @param int $start the record index to start record. Starts from the first record if not specified
+     * @return array the records from db
+     */
+    public function getAllRecords($tableName, $fields = array(), $limit = 0, $start = 0)
+    {
+        $query = SQLEncoder::encodeGetAllRecords($tableName, $fields, $limit, $start);
+        return $this->con->query($query);
     }
 }

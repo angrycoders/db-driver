@@ -126,4 +126,45 @@ class SQLEncoder
         $query .= " WHERE $field = '$value';";
         return $query;
     }
+
+    /**
+     * Encode Get all record to SQL statement
+     * @param $tableName the name of table in db
+     * @param array $fields the field to be returned. Returns all fields if not specified
+     * @param int $limit the number of records to return. Returns all record if not returned
+     * @param int $start the record index to start record. Starts from the first record if not specified
+     * @return string encoded SQL string
+     */
+    public static function encodeGetAllRecords($tableName, $fields = array(), $limit = 0, $start = 0)
+    {
+        if ($fields == null)
+            $fields = array();
+
+        $select = "";
+        $size = sizeof($fields);
+        //Select fields to be returned
+        if (sizeof($fields) > 0) {
+            foreach ($fields as $i => $column) {
+                $select .= " $column";
+                if ($i != ($size - 1))
+                    $select .= ",";
+            }
+        } else {
+            $select = "*";
+        }
+
+        $query = "SELECT $select FROM $tableName";
+
+        if ($limit > 0) {
+            if ($start > 0) {
+                $query .= " LIMIT $start, $limit";
+            } else {
+                $query .= " LIMIT $limit";
+            }
+        }
+
+        $query .= ";";
+
+        return $query;
+    }
 } 

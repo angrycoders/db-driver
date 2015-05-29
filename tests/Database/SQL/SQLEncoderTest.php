@@ -81,5 +81,30 @@ class SQLEncoderTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals($expected, $query);
     }
 
+    /**
+     * test the encodeGetRecord function
+     */
+    public function testEncodeGetAllRecords()
+    {
+        //Test for no params
+        $query = SQLEncoder::encodeGetAllRecords("student");
+        $expected = "SELECT * FROM student;";
+        $this->assertEquals($expected, $query);
+
+        //Test for fields
+        $query = SQLEncoder::encodeGetAllRecords("student", array('name','accountID'));
+        $expected = "SELECT  name, accountID FROM student;";
+        $this->assertEquals($expected, $query);
+
+        //Test for no limit
+        $query = SQLEncoder::encodeGetAllRecords("student", null, 5);
+        $expected = "SELECT * FROM student LIMIT 5;";
+        $this->assertEquals($expected, $query);
+
+        //Test for start and limit
+        $query = SQLEncoder::encodeGetAllRecords("student", null, 5, 1);
+        $expected = "SELECT * FROM student LIMIT 1, 5;";
+        $this->assertEquals($expected, $query);
+    }
 
 } 

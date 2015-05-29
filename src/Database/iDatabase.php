@@ -68,5 +68,13 @@ interface iDatabase {
      */
     public function updateRecord($tableName, $fields, $values, $field, $value);
 
-
+    /**
+     * Get all record from db
+     * @param $tableName the name of table in db
+     * @param array $fields the field to be returned. Returns all fields if not specified
+     * @param int $limit the number of records to return. Returns all record if not returned
+     * @param int $start the record index to start record. Starts from the first record if not specified
+     * @return mixed the records from db
+     */
+    public function getAllRecords($tableName, $fields = array(), $limit=0, $start=0);
 } 

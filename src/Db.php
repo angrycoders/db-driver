@@ -10,6 +10,7 @@ namespace AngryCoders\Db;
 
 use AngryCoders\Db\Database\iDatabase;
 use AngryCoders\Db\Database\SQL\SQLDatabase;
+use AngryCoders\Db\Database\the;
 
 /**
  * Main Database class
@@ -141,6 +142,24 @@ class Db implements iDatabase
     {
         try {
             return $this->db->updateRecord($tableName, $fields, $values, $field, $value);
+        } catch (\Exception $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
+
+    /**
+     * Get all record from db
+     * @param $tableName the name of table in db
+     * @param array $fields the field to be returned. Returns all fields if not specified
+     * @param int $limit the number of records to return. Returns all record if not returned
+     * @param int $start the record index to start record. Starts from the first record if not specified
+     * @throws DbException
+     * @return mixed the records from db
+     */
+    public function getAllRecords($tableName, $fields = array(), $limit = 0, $start = 0)
+    {
+        try {
+            return $this->db->getAllRecords($tableName, $fields, $limit, $start);
         } catch (\Exception $e) {
             throw new DbException($e->getMessage());
         }
